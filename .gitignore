@@ -1,0 +1,69 @@
+# ─── Byte-compiled / optimized ───
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# ─── Virtual environments ───
+venv/
+env/
+.venv/
+ENV/
+
+# ─── Distribution / packaging ───
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# ─── IDE / Editor ───
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# ─── OS-specific ───
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Jupyter Notebook ───
+.ipynb_checkpoints/
+
+# ─── Models (large binaries) ───
+models/*.pkl
+models/*.h5
+models/*.keras
+models/*.joblib
+!models/.gitkeep
+
+# ─── Data (keep structure, ignore large files) ───
+data/processed/*.csv
+data/train_test/*.csv
+!data/raw/
+!data/.gitkeep
+
+# ─── Reports (generated outputs) ───
+reports/*.csv
+reports/*.json
+reports/*.log
+reports/figures/*.png
+!reports/.gitkeep
+
+# ─── Environment variables ───
+.env
+.env.local
+
+# ─── TensorFlow / Keras ───
+logs/
+*.tflite
+*.pb
+
+# ─── Misc ───
+*.log
+*.tmp
+*.bak
