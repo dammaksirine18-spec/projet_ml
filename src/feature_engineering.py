@@ -499,7 +499,7 @@ if __name__ == "__main__":
         X_train, X_test, use_autoencoder=True
     )
 
-    print(f"\n✅ Feature engineering complete!")
+    print(f"\n[Success] Feature engineering complete!")
     print(f"   Mode    : {CONFIG.get('feature_mode', 'combined').upper()}")
     print(f"   Train   : {X_train_final.shape}")
     print(f"   Test    : {X_test_final.shape}")

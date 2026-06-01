@@ -338,174 +338,104 @@ HTML_TEMPLATE = """
         <form id="predictionForm">
             <!-- Demographics -->
             <div class="card">
-                <div class="card-title">👤 Patient Demographics</div>
+                <div class="card-title">👤 Informations du Patient</div>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Age (years)</label>
+                        <label>Âge (ans)</label>
                         <input type="number" name="age" value="55" min="18" max="120" required>
                     </div>
                     <div class="form-group">
-                        <label>Gender</label>
+                        <label>Genre</label>
                         <select name="gender">
-                            <option value="0">Female</option>
-                            <option value="1" selected>Male</option>
+                            <option value="0">Femme</option>
+                            <option value="1" selected>Homme</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Height (cm)</label>
-                        <input type="number" name="height_cm" value="170" step="0.1" min="100" max="250">
+                        <label>Taille (cm)</label>
+                        <input type="number" name="height_cm" id="heightInput" value="170" step="0.1" min="100" max="250">
                     </div>
                     <div class="form-group">
-                        <label>Weight (kg)</label>
-                        <input type="number" name="weight_kg" value="85" step="0.1" min="30" max="300">
+                        <label>Poids (kg)</label>
+                        <input type="number" name="weight_kg" id="weightInput" value="85" step="0.1" min="30" max="300">
                     </div>
                     <div class="form-group">
-                        <label>BMI</label>
-                        <input type="number" name="bmi" value="29.4" step="0.1" min="10" max="70">
+                        <label>IMC <span style="color:var(--accent-blue);font-size:0.7rem">(auto)</span></label>
+                        <input type="number" name="bmi" id="bmiInput" value="29.4" step="0.1" min="10" max="70" readonly style="opacity:0.75;cursor:not-allowed">
                     </div>
                 </div>
             </div>
 
             <!-- Vitals -->
             <div class="card">
-                <div class="card-title">💓 Vital Signs</div>
+                <div class="card-title">💓 Signes Vitaux & Bilan Sanguin</div>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Systolic BP (mmHg)</label>
+                        <label>TA Systolique (mmHg)</label>
                         <input type="number" name="systolic_bp" value="145" min="60" max="300">
                     </div>
                     <div class="form-group">
-                        <label>Diastolic BP (mmHg)</label>
+                        <label>TA Diastolique (mmHg)</label>
                         <input type="number" name="diastolic_bp" value="92" min="30" max="200">
                     </div>
                     <div class="form-group">
-                        <label>Resting Heart Rate</label>
-                        <input type="number" name="resting_heart_rate" value="78" min="30" max="200">
-                    </div>
-                    <div class="form-group">
-                        <label>O₂ Saturation (%)</label>
-                        <input type="number" name="oxygen_saturation" value="96.5" step="0.1" min="70" max="100">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blood Work -->
-            <div class="card">
-                <div class="card-title">🩸 Blood Work</div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Glucose (mg/dL)</label>
+                        <label>Glycémie (mg/dL)</label>
                         <input type="number" name="glucose" value="110" step="0.1" min="20" max="500">
                     </div>
                     <div class="form-group">
-                        <label>Insulin (µU/mL)</label>
-                        <input type="number" name="insulin" value="18" step="0.1" min="0" max="200">
-                    </div>
-                    <div class="form-group">
-                        <label>Total Cholesterol</label>
+                        <label>Cholestérol Total</label>
                         <input type="number" name="total_cholesterol" value="240" min="50" max="500">
-                    </div>
-                    <div class="form-group">
-                        <label>HDL</label>
-                        <input type="number" name="hdl" value="38" min="10" max="150">
-                    </div>
-                    <div class="form-group">
-                        <label>LDL</label>
-                        <input type="number" name="ldl" value="150" min="10" max="300">
-                    </div>
-                    <div class="form-group">
-                        <label>Triglycerides</label>
-                        <input type="number" name="triglycerides" value="200" min="10" max="1000">
-                    </div>
-                    <div class="form-group">
-                        <label>Hemoglobin (g/dL)</label>
-                        <input type="number" name="hemoglobin" value="14.5" step="0.1" min="5" max="25">
                     </div>
                 </div>
             </div>
 
-            <!-- Lifestyle -->
+            <!-- Lifestyle & History -->
             <div class="card">
-                <div class="card-title">🏃 Lifestyle & History</div>
+                <div class="card-title">🏥 Mode de Vie & Antécédents</div>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Smoking Status</label>
+                        <label>Tabagisme</label>
                         <select name="smoking_status">
-                            <option value="0">Never</option>
-                            <option value="1" selected>Current</option>
-                            <option value="2">Former</option>
+                            <option value="0">Jamais</option>
+                            <option value="1" selected>Fumeur actuel</option>
+                            <option value="2">Ex-fumeur</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Smoking Years</label>
-                        <input type="number" name="smoking_years" value="20" min="0" max="80">
-                    </div>
-                    <div class="form-group">
-                        <label>Alcohol Consumption</label>
-                        <input type="number" name="alcohol_consumption" value="2" step="0.1" min="0" max="10">
-                    </div>
-                    <div class="form-group">
-                        <label>Physical Activity</label>
+                        <label>Activité Physique</label>
                         <select name="physical_activity_level">
-                            <option value="0" selected>Sedentary</option>
-                            <option value="1">Light</option>
-                            <option value="2">Moderate</option>
+                            <option value="0" selected>Sédentaire</option>
+                            <option value="1">Légère</option>
+                            <option value="2">Modérée</option>
                             <option value="3">Active</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Sleep Hours</label>
-                        <input type="number" name="sleep_hours" value="5.5" step="0.1" min="0" max="24">
-                    </div>
-                    <div class="form-group">
-                        <label>Stress Level (1-10)</label>
-                        <input type="number" name="stress_level" value="7" step="0.1" min="0" max="10">
-                    </div>
-                    <div class="form-group">
-                        <label>Diet Quality (1-5)</label>
-                        <input type="number" name="diet_quality" value="2" step="0.1" min="1" max="5">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Medical History -->
-            <div class="card">
-                <div class="card-title">🏥 Medical History & Risk Scores</div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Diabetes</label>
+                        <label>Diabète</label>
                         <select name="diabetes">
-                            <option value="0">No</option>
-                            <option value="1" selected>Yes</option>
+                            <option value="0">Non</option>
+                            <option value="1" selected>Oui</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Hypertension</label>
                         <select name="hypertension">
-                            <option value="0">No</option>
-                            <option value="1" selected>Yes</option>
+                            <option value="0">Non</option>
+                            <option value="1" selected>Oui</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Family History</label>
+                        <label>Antécédents Familiaux</label>
                         <select name="family_history_heart_disease">
-                            <option value="0">No</option>
-                            <option value="1" selected>Yes</option>
+                            <option value="0">Non</option>
+                            <option value="1" selected>Oui</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Cardiac Risk Score</label>
-                        <input type="number" name="cardiac_risk_score" value="55" step="0.1" min="0" max="100">
-                    </div>
-                    <div class="form-group">
-                        <label>Metabolic Syndrome Score</label>
-                        <input type="number" name="metabolic_syndrome_score" value="42" step="0.1" min="0" max="100">
                     </div>
                 </div>
             </div>
 
             <button type="submit" class="btn-predict" id="predictBtn">
-                🫀 Predict Heart Disease Risk
+                🫀 Prédire le Risque Cardiaque
             </button>
         </form>
 
@@ -596,9 +526,9 @@ HTML_TEMPLATE = """
         });
 
         // Auto-calculate BMI
-        const heightInput = document.querySelector('input[name="height_cm"]');
-        const weightInput = document.querySelector('input[name="weight_kg"]');
-        const bmiInput = document.querySelector('input[name="bmi"]');
+        const heightInput = document.getElementById('heightInput');
+        const weightInput = document.getElementById('weightInput');
+        const bmiInput = document.getElementById('bmiInput');
 
         function updateBMI() {
             const h = parseFloat(heightInput.value) / 100;
@@ -667,7 +597,7 @@ if __name__ == "__main__":
     debug = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
 
     print("=" * 50)
-    print("  🫀 Heart Disease Risk Prediction App")
+    print("  Heart Disease Risk Prediction App")
     print(f"  Running on: http://localhost:{port}")
     print("=" * 50)
 

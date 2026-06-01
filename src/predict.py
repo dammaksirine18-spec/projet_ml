@@ -118,20 +118,35 @@ class HeartDiseasePrediction:
         # Scale original features
         if self.scaler is not None:
             scaler_features = list(self.scaler.feature_names_in_) if hasattr(self.scaler, 'feature_names_in_') else original_features
-            common_features = [c for c in scaler_features if c in df.columns]
-            if common_features:
-                df[common_features] = self.scaler.transform(df[common_features])
+            # Fill missing columns with their training mean so they become 0 (neutral) after scaling
+            # This avoids biasing the model with extreme values like HDL=0, LDL=0, etc.
+            if hasattr(self.scaler, 'mean_'):
+                for i, col in enumerate(scaler_features):
+                    if col not in df.columns:
+                        df[col] = self.scaler.mean_[i]  # training mean → scales to 0
+            else:
+                for col in scaler_features:
+                    if col not in df.columns:
+                        df[col] = 0
+            df[scaler_features] = self.scaler.transform(df[scaler_features])
 
         # Create clinical features
         df = create_clinical_features(df)
 
         # Scale new engineered features
         if self.new_features_scaler is not None:
-            new_cols = [c for c in df.columns if c not in original_features]
-            scaler_cols = list(self.new_features_scaler.feature_names_in_) if hasattr(self.new_features_scaler, 'feature_names_in_') else new_cols
-            common_new = [c for c in scaler_cols if c in df.columns]
-            if common_new:
-                df[common_new] = self.new_features_scaler.transform(df[common_new])
+            scaler_cols = list(self.new_features_scaler.feature_names_in_) if hasattr(self.new_features_scaler, 'feature_names_in_') else []
+            # Fill missing engineered features with their training mean
+            if hasattr(self.new_features_scaler, 'mean_'):
+                for i, col in enumerate(scaler_cols):
+                    if col not in df.columns:
+                        df[col] = self.new_features_scaler.mean_[i]
+            else:
+                for col in scaler_cols:
+                    if col not in df.columns:
+                        df[col] = 0
+            if scaler_cols:
+                df[scaler_cols] = self.new_features_scaler.transform(df[scaler_cols])
 
         # Add autoencoder features
         if self.encoder is not None:

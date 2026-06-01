@@ -311,6 +311,6 @@ def run_preprocessing_pipeline(filepath: str = None) -> tuple:
 
 if __name__ == "__main__":
     X_train, X_test, y_train, y_test, features = run_preprocessing_pipeline()
-    print(f"\n✅ Preprocessing complete!")
+    print(f"\n[Success] Preprocessing complete!")
     print(f"   Train: {X_train.shape} | Test: {X_test.shape}")
     print(f"   Features: {len(features)}")

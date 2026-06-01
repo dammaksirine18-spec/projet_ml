@@ -499,8 +499,8 @@ def run_evaluation(
     logger.info("  EVALUATION SUMMARY")
     logger.info("=" * 70)
     logger.info(f"\n{results_df.to_string(index=False)}")
-    logger.info("\n📁 Reports saved to: reports/")
-    logger.info("📊 Figures saved to: reports/figures/")
+    logger.info("\n[Reports] Reports saved to: reports/")
+    logger.info("[Figures] Figures saved to: reports/figures/")
     logger.info("=" * 70)
 
     return results_df
@@ -523,4 +523,4 @@ if __name__ == "__main__":
     feature_names = X_train_final.columns.tolist()
     results_df = run_evaluation(trained_models, X_test_final, y_test, feature_names)
 
-    print(f"\n✅ Evaluation complete! Check reports/ directory.")
+    print(f"\n[Success] Evaluation complete! Check reports/ directory.")
